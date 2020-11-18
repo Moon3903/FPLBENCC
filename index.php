@@ -50,7 +50,7 @@
                     $imagesUrl = "\"".$imagesUrlEXP[3]."\"";
                     $tipe1 = $rowChar->children(2)->children(0)->plaintext;
                     if($rowChar->children(2)->children(2)){
-                        $tipe2 = ", ".$rowChar->children(2)->children(2)->plaintext;
+                        $tipe2 = "<br>".$rowChar->children(2)->children(2)->plaintext;
                     }
                     else{
                         $tipe2 = " ";
