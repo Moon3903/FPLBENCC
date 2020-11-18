@@ -43,7 +43,13 @@
                 $type = "type.php#";
                 foreach (array_slice($tableBody->find('tr'),0) as $rowChar) {
                     $i = $i+1;
-                    $name = str_replace(" ","",$rowChar->children(1)->children(0)->plaintext);
+                    $name1 = str_replace(" ","",$rowChar->children(1)->children(0)->plaintext);
+                    if($rowChar->children(1)->children(2)){
+                        $name2 = $rowChar->children(1)->children(2)->plaintext;
+                    }
+                    else{
+                        $name2 = "";
+                    }
                     $natinalNo = str_replace(" ","",$rowChar->children(0)->children(1)->plaintext);
                     $imagesUrl = $rowChar->children(0)->children(0)->children(0);
                     $imagesUrlEXP = explode("\"",$imagesUrl);
@@ -58,7 +64,7 @@
                     echo "<tr>";
                         echo "<td>".$natinalNo."</td>";
                         echo "<td><img src=$imagesUrl></img></td>";
-                        echo "<td><a href='$type$name'>$name</a></td>";
+                        echo "<td><a href='$type$name1'>$name1</a><br>$name2</td>";
                         echo "<td>".$tipe1.$tipe2."</td>";
                 }
             ?>
