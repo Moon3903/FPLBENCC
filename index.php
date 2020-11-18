@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FP LBE NCC</title>
+    <title>FP LBE NCC Kel 4</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
@@ -30,7 +30,7 @@
         <table class='table table-striped table-dark '>
             <thead class='thead-dark'>
                 <tr>
-                    <th style="width:15%">National No</th>
+                    <th style="width:15%">National №</th>
                     <th style="width:0%"></th>
                     <th style="width:25%">Images</th>
                     <th style="width:20%">Name</th>
