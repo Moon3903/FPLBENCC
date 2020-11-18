@@ -40,7 +40,7 @@
             <?php
                 $i=0;
                 $coba = "ok";
-                $type = "type.php#";
+                $type = "type.php?type=";
                 foreach (array_slice($tableBody->find('tr'),0) as $rowChar) {
                     $i = $i+1;
                     $name1 = str_replace(" ","",$rowChar->children(1)->children(0)->plaintext);
