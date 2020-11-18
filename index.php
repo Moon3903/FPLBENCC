@@ -31,14 +31,9 @@
             <thead class='thead-dark'>
                 <tr>
                     <th style="width:15%">National №</th>
-                    <th style="width:0%"></th>
-                    <th style="width:25%">Images</th>
+                    <th style="width:15%">Images</th>
                     <th style="width:20%">Name</th>
-                    <th style="width:0%"></th>
-                    <!-- <th style="width:10%">Element</th>
-                    <th style="width:15%">Weapon</th>
-                    <th style="width:10%">Sex</th>
-                    <th style="width:15%">Nation</th> -->
+                    <th style="width:20%">Type</th>
                 </tr>
             </thead>
             <!-- <tbody> kelompok 4 zul-->
@@ -51,12 +46,20 @@
                     $name = str_replace(" ","",$rowChar->children(1)->children(0)->plaintext);
                     $natinalNo = str_replace(" ","",$rowChar->children(0)->children(1)->plaintext);
                     $imagesUrl = $rowChar->children(0)->children(0)->children(0);
-                    $imagesUrlEXP=explode("\"",$imagesUrl);
+                    $imagesUrlEXP = explode("\"",$imagesUrl);
                     $imagesUrl = "\"".$imagesUrlEXP[3]."\"";
+                    $tipe1 = $rowChar->children(2)->children(0)->plaintext;
+                    if($rowChar->children(2)->children(2)){
+                        $tipe2 = ", ".$rowChar->children(2)->children(2)->plaintext;
+                    }
+                    else{
+                        $tipe2 = " ";
+                    }
                     echo "<tr>";
-                        echo "<td>".$natinalNo."<td>";
+                        echo "<td>".$natinalNo."</td>";
                         echo "<td><img src=$imagesUrl></img></td>";
-                        echo "<td><a href='$type$name'>$name</a><td>";
+                        echo "<td><a href='$type$name'>$name</a></td>";
+                        echo "<td>".$tipe1.$tipe2."</td>";
                 }
             ?>
         </table>
