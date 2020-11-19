@@ -82,7 +82,7 @@
                 }
             ?>
         </table>
-
+        <a href="index.php" class="btn btn-danger" role="button">Back</a>
     </div>
 </body>
 
