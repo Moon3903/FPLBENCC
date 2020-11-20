@@ -7,6 +7,7 @@
     <title>FP LBE NCC Kel 4</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
@@ -21,6 +22,10 @@
     <style>
         .card-body-mid {
             color: white;
+        }
+
+        .evo {
+            text-align: center;
         }
     </style>
     <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
@@ -48,13 +53,12 @@
             include('simple_html_dom.php');
             
             $url = "pokemondb.net";
-            $pokedex = "https://".$url."/pokedex/";
-            // $img = $url."/artwork/";
-            $typeUrl = "https://".$url;
+            $http = "https://";
+            $pokedex = $http.$url."/pokedex/";
+            $typeUrl = $http.$url;
             $nama = strtoupper($_GET['type']);
             $coba = strtolower($_GET['type']);
             $pokemon = $pokedex.$coba;
-            // $img = "https://img.".$img.$coba.".jpg";
             $html = file_get_html($pokemon);
             $table = 'table[class=vitals-table]';
             $pointimg = $html -> find('div[class=grid-col span-md-6 span-lg-4 text-center]',0);
@@ -198,46 +202,63 @@
             <br>
             <!-- /.col-md-4 -->
         </div>
+        <h2>Evolution</h2>
         <div class="evo">
             <?php
-              $halo = 0;
-              while($html -> find('div[class=infocard-list-evo]',$halo)){
-
-                $evo = $html -> find('div[class=infocard-list-evo]',$halo);
-                $i=0;
-                while($evo->children($i)){
-                  $curr = $evo ->children($i);
-                  if ($i==0){
-                    $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
-                    echo "<img src=$evoimg></img>";
-                    $no = $curr -> children(1);
-                    $loop = 0;
-                    while($no -> children($loop)){
-                      $text = $no ->children($loop)->plaintext;
-                      echo "<div>$text</div>";
-
-                      $loop = $loop+1;
-                    }
-                  }
-                  else if($i%2==0){
-                    echo "<div> kasih gambar panah </div>";
-                    $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
-                    echo "<img src=$evoimg></img>";
-                    $no = $curr -> children(1);
-                    $loop = 0;
-                    while($no -> children($loop)){
-                      $text = $no ->children($loop)->plaintext;
-                      echo "<div>$text</div>";
-
-                      $loop = $loop+1;
-                    }
-                  }
-                  $i=$i+1;
-                }
-                $halo = $halo+1;
-              }
+                $halo = 0;
             ?>
+                <div class="card text-center">
+                <?php
+                while($html -> find('div[class=infocard-list-evo]',$halo)){
+
+                    $evo = $html -> find('div[class=infocard-list-evo]',$halo);
+                    $i=0;
+                    while($evo->children($i)){
+                    $curr = $evo ->children($i);
+                    if ($i==0){
+                        $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
+                        echo "<img class='card-img-top' src=$evoimg>";
+                        $no = $curr -> children(1);
+                        $loop = 0;
+                        while($no -> children($loop)){
+                        $text = $no ->children($loop)->plaintext;
+                ?>
+                        <div class="card-body">
+                        <?php
+                        echo "<h5>$text</h5>";
+                        ?>
+                        </div>
+                        <?php
+                        $loop = $loop+1;
+                        }
+                    }
+                    else if($i%2==0){
+                        echo "<br>";
+                        echo "<i class='fa fa-arrow-down' style='font-size:36px'></i><br>";
+                        $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
+                        echo "<img class='card-img-top' src=$evoimg>";
+                        $no = $curr -> children(1);
+                        $loop = 0;
+                        while($no -> children($loop)){
+                        $text = $no ->children($loop)->plaintext;
+                        ?>
+                        <div class="card-body">
+                        <?php
+                        echo "<h5>$text</h5>";
+                        ?>
+                        </div>
+                        <?php
+                        $loop = $loop+1;
+                        }
+                    }
+                    $i=$i+1;
+                    }
+                    $halo = $halo+1;
+                }
+                ?>
+                </div>
         </div>
+        <br>
         <div class="rekom">
             <?php
             $rekomtype = explode(" ",$type);
@@ -289,7 +310,7 @@
         $type = "type.php?type=";
 
         $url1 = "pokemondb.net";
-        $pokedex1 = "https://".$url."/pokedex/";
+        $pokedex1 = $http.$url."/pokedex/";
         $imgs = $url."/artwork/";
         
         
@@ -304,9 +325,10 @@
         $html2 = file_get_html($pokemon2);
         $html3 = file_get_html($pokemon3);
 
-        $img1 = "https://img.".$imgs.$rekomen1.".jpg";
-        $img2 = "https://img.".$imgs.$rekomen2.".jpg";
-        $img3 = "https://img.".$imgs.$rekomen3.".jpg";
+        $image = "https://img.";
+        $img1 = $image.$imgs.$rekomen1.".jpg";
+        $img2 = $image.$imgs.$rekomen2.".jpg";
+        $img3 = $image.$imgs.$rekomen3.".jpg";
 
         $table = 'table[class=vitals-table]';
         $vital1 = $html1 -> find($table,0);
