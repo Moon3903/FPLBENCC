@@ -236,7 +236,57 @@
         </div>
 
         <h2>Recommended for you</h2>
+        <?php 
+        $poke= explode("/",$rekomPokemon[1]);
+        $poke1=explode("/",$rekomPokemon[2]);
+        $poke2=explode("/",$rekomPokemon[3]);
+        $rekomen1=$poke[4];
+        $rekomen2=$poke1[4];
+        $rekomen3=$poke2[4];
+        $type = "type.php?type=";
+
+        $url1 = "pokemondb.net";
+        $pokedex1 = "https://".$url."/pokedex/";
+        $imgs = $url."/artwork/";
         
+        
+
+        
+        
+        $pokemon1 = $pokedex1.$rekomen1;
+        $pokemon2 = $pokedex1.$rekomen2;
+        $pokemon3 = $pokedex1.$rekomen3;
+        
+        $html1 = file_get_html($pokemon1);
+        $html2 = file_get_html($pokemon2);
+        $html3 = file_get_html($pokemon3);
+
+        $img1 = "https://img.".$imgs.$rekomen1.".jpg";
+        $img2 = "https://img.".$imgs.$rekomen2.".jpg";
+        $img3 = "https://img.".$imgs.$rekomen3.".jpg";
+
+        $table = 'table[class=vitals-table]';
+        $vital1 = $html1 -> find($table,0);
+        $vital1 = $vital1 -> find('tbody',0);
+
+        $vital2 = $html2 -> find($table,0);
+        $vital2 = $vital2 -> find('tbody',0);
+
+        $vital3 = $html3 -> find($table,0);
+        $vital3 = $vital3 -> find('tbody',0);
+
+
+        $national1 = $vital1->children(0)->plaintext;
+        $national2 = $vital2->children(0)->plaintext;
+        $national3 = $vital3->children(0)->plaintext;
+        
+        $species1 = $vital1->children(2)->plaintext;
+        $species2 = $vital2->children(2)->plaintext;
+        $species3 = $vital3->children(2)->plaintext;
+
+        
+        
+        ?>
         <div class="row">
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
@@ -244,7 +294,12 @@
                         <h2 class="card-title">1</h2>
                         <div class="card-text">
                             <?php
-                                echo "<h3>$rekomPokemon[1]</h3>";
+                                echo "<img src=$img1></img>";
+                                echo "<h3><a href='$type$rekomen1'>$rekomen1</a></h3>";
+                                echo "<p>$national1</p>";
+                                echo "<p>$species1</p>";
+                                
+                                
                             ?>
                         </div>
                     </div>
@@ -257,7 +312,10 @@
                         <h2 class="card-title">2</h2>
                         <div class="card-text">
                             <?php
-                                echo "<h3>$rekomPokemon[2]</h3>";
+                                echo "<img src=$img2></img>";
+                                echo "<h3><a href='$type$rekomen2'>$rekomen2  </a></h3>";
+                                echo "<p>$national2</p>";
+                                echo "<p>$species2</p>";
                             ?>
                         </div>
                     </div>
@@ -270,7 +328,10 @@
                         <h2 class="card-title">3</h2>
                         <div class="card-text">
                             <?php
-                                echo "<h3>$rekomPokemon[3]</h3>";
+                                 echo "<img src=$img3></img>";
+                                echo "<h3><a href='$type$rekomen3'>$rekomen3</a></h3>";
+                                echo "<p>$national3</p>";
+                                echo "<p>$species3</p>";
                             ?>
                         </div>
                     </div>
