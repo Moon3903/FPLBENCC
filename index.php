@@ -59,7 +59,7 @@
                     <th style="width:20%">Type</th>
                 </tr>
             </thead>
-            <!-- <tbody> kelompok 4 zul-->
+            <!-- <tbody> kelompok 4-->
             <?php
                 $i=0;
                 $coba = "ok";
