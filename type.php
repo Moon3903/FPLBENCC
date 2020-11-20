@@ -79,11 +79,19 @@
             $stats=$stats->find('tbody',0);
             
             $hp=$stats->children(0)->children(1)->plaintext;
-            $attack=$stats->children(1)->children(1)->plaintext;
-            $hp=$stats->children(2)->children(1)->plaintext;
-            $hp=$stats->children(3)->children(1)->plaintext;
-            $hp=$stats->children(4)->children(1)->plaintext;
+            $atk=$stats->children(1)->children(1)->plaintext;
+            $def=$stats->children(2)->children(1)->plaintext;
+            $spatk=$stats->children(3)->children(1)->plaintext;
+            $spdef=$stats->children(4)->children(1)->plaintext;
+            $spd=$stats->children(5)->children(1)->plaintext;
+
+
             $hp=(int)$hp;
+            $atk=(int)$atk;
+            $def=(int)$def;
+            $spatk=(int)$spatk;
+            $spdef=(int)$spdef;
+            $spd=(int)$spd
             
         ?>
         <!-- Heading Row -->
@@ -168,22 +176,36 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+    <div id = "container" style = "width: 800px; height: 600tpx; margin: 0 auto">
       </div>
       <script language = "JavaScript">
          function drawChart() {
             // Define the chart to be drawn.
-            var num = <?php echo $hp ?>;
+            var hp = <?php echo $hp ?>;
+            var atk =<?php echo $atk ?>;
+            var def =<?php echo $def ?>;
+            var spatk =<?php echo $spatk ?>;
+            var spdef =<?php echo $spdef ?>;
+            var spd =<?php echo $spd ?>;
+
+
+
+            
+
+
+
             var data = google.visualization.arrayToDataTable([
-               
-               ['2012',  num],
-               ['2013',  10],
-               ['2014',  17],
-               ['2015',  12],
-               ['2016',  15]
+               ['Year', 'point'],
+               ['hp',  hp],
+               ['Attack',  atk],
+               ['Defense',  def],
+               ['Sp.Atk',  spatk],
+               ['Sp.Def',  spdef],
+               ['speed',  spd]
             ]);
 
-            var options = {title: 'Base status'}; 
+            var options = {title: 'Base status',is3D :false,width: 800,
+                        height: 240,showRowNumber: true}; 
 
             // Instantiate and draw the chart.
             var chart = new google.visualization.BarChart(document.getElementById('container'));
