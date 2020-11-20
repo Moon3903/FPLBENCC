@@ -38,11 +38,12 @@
             include('simple_html_dom.php');
             
             $url = "pokemondb.net";
-            $pokemon = $url."/pokedex/";
+            $pokedex = "https://".$url."/pokedex/";
             $img = $url."/artwork/";
+            $typeUrl = "https://".$url;
             $coba = strtolower($_GET['type']);
             $nama = $_GET['type'];
-            $pokemon = "https://".$pokemon.$coba;
+            $pokemon = $pokedex.$coba;
             $img = "https://img.".$img.$coba.".jpg";
             $html = file_get_html($pokemon);
 
@@ -51,11 +52,44 @@
 
             $national = $vital->children(0)->plaintext;
             $type = $vital->children(1)->plaintext;
+            $rekomtype = explode(" ",$type);
+            $rekomtype = $rekomtype[3];
             $species = $vital->children(2)->plaintext;
             $height = $vital->children(3)->plaintext;
             $weight = $vital->children(4)->plaintext;
             $ability = $vital->children(5)->plaintext;
-            
+
+            $rekomtype = strtolower($rekomtype);
+            $typeUrl = $typeUrl."/type/".$rekomtype;
+            $typehtml = file_get_html($typeUrl);
+            $typeTable = $typehtml -> find('div[class=infocard-list infocard-list-pkmn-md]',0);
+            $rekomPokemon = array("-1","-1","-1");
+            $i=0;
+            $k=0;
+            while(True){
+              $cur = $typeTable->children($k)->children(1)->children(0)->href;
+              $cur = explode("/",$cur);
+              $cur = $cur[2];
+              if($i==0){
+                if ($cur != $nama){
+                  $rekomPokemon[0] = $pokedex.$cur;
+                  $i = $i + 1;
+                }
+              }
+              else{
+                if ($cur != $nama){
+                  if($pokedex.$cur != $rekomPokemon[$i-1] ){
+                    $rekomPokemon[$i] = $pokedex.$cur;
+                    $i = $i + 1;
+                  }
+                }
+              }
+              if($i == 3){
+                break;
+              }
+              $k=$k+1;
+            }
+            echo "<p>$rekomPokemon[0]<br>$rekomPokemon[1]<br>$rekomPokemon[2]</p>";
         ?>
         <!-- Heading Row -->
     <div class="row align-items-center my-5">
