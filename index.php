@@ -56,6 +56,9 @@
                 $type = "type.php?type=";
                 foreach (array_slice($tableBody->find('tr'),0) as $rowChar) {
                     $i = $i+1;
+                    $link = $rowChar->children(1)->children(0)->href;
+                    $link = explode("/",$link);
+                    $link = $link[2];
                     $name1 = str_replace(" ","",$rowChar->children(1)->children(0)->plaintext);
                     if($rowChar->children(1)->children(2)){
                         $name2 = $rowChar->children(1)->children(2)->plaintext;
@@ -77,7 +80,7 @@
                     echo "<tr>";
                         echo "<td>".$natinalNo."</td>";
                         echo "<td><img src=$imagesUrl></img></td>";
-                        echo "<td><a href='$type$name1'>$name1</a><br>$name2</td>";
+                        echo "<td><a href='$type$link'>$name1</a><br>$name2</td>";
                         echo "<td>".$tipe1.$tipe2."</td>";
                 }
             ?>
