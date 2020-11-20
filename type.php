@@ -200,36 +200,41 @@
         </div>
         <div class="evo">
             <?php
-              $evo = $html -> find('div[class=infocard-list-evo]',0);
-              $i=0;
-              while($evo->children($i)){
-                $curr = $evo ->children($i);
-                if ($i==0){
-                  $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
-                  echo "<img src=$evoimg></img>";
-                  $no = $curr -> children(1);
-                  $loop = 0;
-                  while($no -> children($loop)){
-                    $text = $no ->children($loop)->plaintext;
-                    echo "<div>$text</div>";
+              $halo = 0;
+              while($html -> find('div[class=infocard-list-evo]',$halo)){
 
-                    $loop = $loop+1;
-                  }
-                }
-                else if($i%2==0){
-                  echo "<div> kasih gambar panah </div>";
-                  $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
-                  echo "<img src=$evoimg></img>";
-                  $no = $curr -> children(1);
-                  $loop = 0;
-                  while($no -> children($loop)){
-                    $text = $no ->children($loop)->plaintext;
-                    echo "<div>$text</div>";
+                $evo = $html -> find('div[class=infocard-list-evo]',0);
+                $i=0;
+                while($evo->children($i)){
+                  $curr = $evo ->children($i);
+                  if ($i==0){
+                    $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
+                    echo "<img src=$evoimg></img>";
+                    $no = $curr -> children(1);
+                    $loop = 0;
+                    while($no -> children($loop)){
+                      $text = $no ->children($loop)->plaintext;
+                      echo "<div>$text</div>";
 
-                    $loop = $loop+1;
+                      $loop = $loop+1;
+                    }
                   }
+                  else if($i%2==0){
+                    echo "<div> kasih gambar panah </div>";
+                    $evoimg = $curr->children(0)->children(0)->children(0)->getAttribute('data-src');
+                    echo "<img src=$evoimg></img>";
+                    $no = $curr -> children(1);
+                    $loop = 0;
+                    while($no -> children($loop)){
+                      $text = $no ->children($loop)->plaintext;
+                      echo "<div>$text</div>";
+
+                      $loop = $loop+1;
+                    }
+                  }
+                  $i=$i+1;
                 }
-                $i=$i+1;
+                $halo = $halo+1;
               }
             ?>
         </div>
