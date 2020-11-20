@@ -212,13 +212,13 @@
                 $cur = explode("/",$cur);
                 $cur = $cur[2];
                 if($i==0){
-                    if ($cur != $nama){
+                    if ($cur != $coba){
                         $rekomPokemon[0] = $pokedex.$cur;
                         $i = $i + 1;
                     }
                 }
                 else{
-                    if ($cur != $nama){
+                    if ($cur != $coba){
                         if($pokedex.$cur != $rekomPokemon[$i-1] ){
                             $rekomPokemon[$i] = $pokedex.$cur;
                             $i = $i + 1;
