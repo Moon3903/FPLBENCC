@@ -23,6 +23,16 @@
             color: white;
         }
     </style>
+
+
+
+
+    <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
+     
 </head>
 
 <body>
@@ -48,6 +58,11 @@
 
             $vital = $html -> find('table[class=vitals-table]',0);
             $vital = $vital -> find('tbody',0);
+            $tambah = $html -> find('table[class=vitals-table]',1);
+            $tambah = $tambah -> find('tbody',0);
+            
+            $catch=$tambah->children(1)->plaintext;
+            $growth=$tambah->children(4)->plaintext;
 
             $national = $vital->children(0)->plaintext;
             $type = $vital->children(1)->plaintext;
@@ -55,6 +70,20 @@
             $height = $vital->children(3)->plaintext;
             $weight = $vital->children(4)->plaintext;
             $ability = $vital->children(5)->plaintext;
+
+
+
+
+
+            $stats=$html->find('table[class=vitals-table]',3);
+            $stats=$stats->find('tbody',0);
+            
+            $hp=$stats->children(0)->children(1)->plaintext;
+            $attack=$stats->children(1)->children(1)->plaintext;
+            $hp=$stats->children(2)->children(1)->plaintext;
+            $hp=$stats->children(3)->children(1)->plaintext;
+            $hp=$stats->children(4)->children(1)->plaintext;
+            $hp=(int)$hp;
             
         ?>
         <!-- Heading Row -->
@@ -70,8 +99,11 @@
             echo "<h1>$nama</h1>";
             echo "<p>$type</p>";
             echo "<p>$species</p>";
+            echo "<p>$catch</p>";
+            echo "<p>$growth</p>";
+            
         ?>
-        <a class="btn btn-primary" href="#">More</a>
+        
       </div>
       <!-- /.col-md-4 -->
     </div>
@@ -135,6 +167,30 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var num = <?php echo $hp ?>;
+            var data = google.visualization.arrayToDataTable([
+               
+               ['2012',  num],
+               ['2013',  10],
+               ['2014',  17],
+               ['2015',  12],
+               ['2016',  15]
+            ]);
+
+            var options = {title: 'Base status'}; 
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
 </body>
 
 </html>
