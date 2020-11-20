@@ -203,7 +203,7 @@
               $halo = 0;
               while($html -> find('div[class=infocard-list-evo]',$halo)){
 
-                $evo = $html -> find('div[class=infocard-list-evo]',0);
+                $evo = $html -> find('div[class=infocard-list-evo]',$halo);
                 $i=0;
                 while($evo->children($i)){
                   $curr = $evo ->children($i);
