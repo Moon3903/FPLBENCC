@@ -49,14 +49,17 @@
             
             $url = "pokemondb.net";
             $pokedex = "https://".$url."/pokedex/";
-            $img = $url."/artwork/";
+            // $img = $url."/artwork/";
             $typeUrl = "https://".$url;
             $nama = strtoupper($_GET['type']);
             $coba = strtolower($_GET['type']);
             $pokemon = $pokedex.$coba;
-            $img = "https://img.".$img.$coba.".jpg";
+            // $img = "https://img.".$img.$coba.".jpg";
             $html = file_get_html($pokemon);
             $table = 'table[class=vitals-table]';
+            $pointimg = $html -> find('div[class=grid-col span-md-6 span-lg-4 text-center]',0);
+            $img = $pointimg ->children(0)->children(0) ;
+            $img = (string)$img;
             $vital = $html -> find($table,0);
             $vital = $vital -> find('tbody',0);
             $tambah = $html -> find($table,1);
@@ -93,7 +96,7 @@
         <div class="row align-items-center my-5">
             <div class="col-lg-7">
                 <?php
-                    echo "<img src=$img></img>";
+                    echo $img;
                 ?>
             </div>
             <!-- /.col-lg-8 -->
