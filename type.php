@@ -359,7 +359,7 @@
                         <h2 class="card-title">1</h2>
                         <div class="card-text">
                             <?php
-                                echo "<img src=$img1></img>";
+                                echo "<img src=$img1>";
                                 echo "<h3><a href='$type$rekomen1'>$rekomen1</a></h3>";
                                 echo "<p>$national1</p>";
                                 echo "<p>$species1</p>";
@@ -377,7 +377,7 @@
                         <h2 class="card-title">2</h2>
                         <div class="card-text">
                             <?php
-                                echo "<img src=$img2></img>";
+                                echo "<img src=$img2>";
                                 echo "<h3><a href='$type$rekomen2'>$rekomen2  </a></h3>";
                                 echo "<p>$national2</p>";
                                 echo "<p>$species2</p>";
@@ -393,7 +393,7 @@
                         <h2 class="card-title">3</h2>
                         <div class="card-text">
                             <?php
-                                 echo "<img src=$img3></img>";
+                                 echo "<img src=$img3>";
                                 echo "<h3><a href='$type$rekomen3'>$rekomen3</a></h3>";
                                 echo "<p>$national3</p>";
                                 echo "<p>$species3</p>";

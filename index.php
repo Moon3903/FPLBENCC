@@ -89,7 +89,7 @@
                     }
                     echo "<tr>";
                         echo "<td>".$natinalNo."</td>";
-                        echo "<td><img src=$imagesUrl></img></td>";
+                        echo "<td><img src=$imagesUrl></td>";
                         echo "<td><a href='$type$link'>$name1</a><br>$name2</td>";
                         echo "<td>".$tipe1.$tipe2."</td>";
                 }
