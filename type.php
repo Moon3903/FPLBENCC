@@ -207,7 +207,7 @@
             <?php
                 $halo = 0;
             ?>
-                <div class="card text-center">
+                <div class="card text-center" style="width: 250px;">
                 <?php
                 while($html -> find('div[class=infocard-list-evo]',$halo)){
 
