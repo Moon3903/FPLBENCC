@@ -44,7 +44,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="index.php">Home</a>
-                <a class="nav-item nav-link active" href="type.php">Details <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="#">Details <span class="sr-only">(current)</span></a>
             </div>
         </div>
     </nav>
